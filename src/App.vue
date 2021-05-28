@@ -1,30 +1,42 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+    <Navbar />
+    <div class="vh-100">
+      <router-view/>      
+      <Footer />
+    </div>
+    
+
+
   </div>
-  <router-view/>
 </template>
+<script>
+import Navbar from './components/navbar'
+import Footer from './components/footer'
+import useStudent from './store/useStudent'
 
+export default {
+  components: {
+    Navbar, Footer
+  },
+  setup(){
+
+    const {getIsLoggedIn, getStudent} = useStudent()
+    const loggedIn = getIsLoggedIn()
+    const student = getStudent()
+
+    // ver si hay token en el localstorage y fijar variables student y logged in
+
+  }
+  
+}
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+body{
+  font-family: 'Comfortaa', cursive;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
